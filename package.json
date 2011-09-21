@@ -1,0 +1,19 @@
+{
+  "name": "my_package",
+  "summary": "Short package description",
+  "description": "Long package description",
+  "homepage": "http://mypackage.com",
+  "author": "Your Name",
+  "version": "1.0.0",
+
+  "directories": {
+    "lib": "lib"
+  },
+  
+  "bpm:build": {
+    "bpm_libs.js": {
+      "files": ["lib"],
+    }
+  }
+
+}
