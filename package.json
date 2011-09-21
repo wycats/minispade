@@ -12,8 +12,7 @@
   
   "bpm:build": {
     "bpm_libs.js": {
-      "files": ["lib"],
+      "files": ["lib"]
     }
   }
-
 }
