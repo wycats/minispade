@@ -2,8 +2,7 @@
 require File.expand_path('../lib/minispade/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.add_development_dependency 'bundler', '~> 1.0'
-  s.add_development_dependency 'thor', '~> 0.15.2'
+  s.add_dependency 'thor', '~> 0.15.2'
   s.authors = ['Yehuda Katz']
   s.description = %q{A javascript wrapper and require implementation}
   s.email = 'ruby-thor@googlegroups.com'
