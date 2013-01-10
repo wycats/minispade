@@ -1,0 +1,42 @@
+#! /usr/bin/env ruby
+require "thor"
+class Minispade < Thor
+
+  desc "convert STDIN", "convert STDIN into a minispade wrapped lib"
+  method_option :module_id, :aliass => ['-id'], required: true
+  method_option :rewrite_requires, type: :boolean, default: true
+  method_option :use_strict, type: :boolean, default: false
+  method_option :string, type: :boolean, default: true
+  def convert
+    print "minispade.register('#{options[:module_id]}', "
+
+    if options.string?
+      print %|"(function() {|
+    else
+      print "function() {"
+    end
+
+    $stdin.each do |line|
+      line.gsub!(%r{^\s*require\s*\(\s*}, 'minispade.require(') if options.rewrite_requires?
+      line = %["use strict";\n] + code if options.use_strict?
+
+
+      if options.string?
+        print line.gsub(/"/, %{\\"}).gsub(/\n/, "\\n")
+      else
+        puts line
+      end
+    end
+
+    if options.string?
+      print %|})();\\n//@ sourceURL=#{options[:module_id]}"|
+    else
+      puts "};"
+    end
+
+    print ");"
+  end
+  default_task :convert
+end
+
+Minispade.start
